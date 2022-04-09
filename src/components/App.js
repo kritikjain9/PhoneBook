@@ -1,24 +1,44 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import Header from "./Header";
-import ContactCard from "./ContactCard";
 import ContactList from "./ContactList";
 import AddContacts from "./AddContacts";
+const shortid = require("shortid");
 
 function App() {
   const LOCAL_STORAGE_KEY = "contacts";
   const [contacts, setContacts] = useState([]);
 
   const addContactHandler = (contactDetails) => {
-    console.log(contactDetails);
-    setContacts([...contacts, contactDetails]);
+    // console.log(contactDetails);
+  
+    setContacts([...contacts, { id: shortid.generate(), ...contactDetails }]);
+  };
+
+  const removeContact = (id) => {
+    // console.log(id)
+    
+    const newPhoneBook = contacts.filter((item) => {
+      console.log(item)
+      // console.log(`Getting this instead of ${id} id`);
+      // console.log(id);
+      // console.log(item.id);
+      return id != item.id;
+      // return item.id != "QYEscyHr8";
+    });
+
+    // console.log("Upating the contact list after deleting the element");
+    // console.log(newPhoneBook);
+    setContacts(newPhoneBook);
   };
 
   useEffect(() => {
     const retrieveContacts = JSON.parse(
       localStorage.getItem(LOCAL_STORAGE_KEY)
     );
-    if (retrieveContacts) setContacts(retrieveContacts);
+    if (retrieveContacts) {
+      setContacts(retrieveContacts);
+    }
   }, []);
 
   useEffect(() => {
@@ -31,7 +51,7 @@ function App() {
     <div>
       <Header />
       <AddContacts addContactHandler={addContactHandler} />
-      <ContactList contacts={contacts} />
+      <ContactList  contacts={contacts} removeContact={removeContact} />
     </div>
   );
 }

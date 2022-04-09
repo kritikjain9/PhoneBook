@@ -7,14 +7,17 @@ const ContactCard = (props) => {
 
   return (
     <div>
-      <div class="item">
-        <div class="content">
-          <a class="header">{props.contact.name}</a>
-          <div class="description">
-            {props.contact.phone}
-            <i
+      <div className="item">
+        <div className="content">
+          <a className="header">{props.contact.name}</a>
+          <div className="description">
+             {props.contact.phone}
+            <i 
               className="trash alternate outline icon"
               style={{ color: "red", marginTop: "7px" }}
+              onClick={() => {
+                props.iconClickhandler( props.key_div);
+              }}
             ></i>
           </div>
         </div>
