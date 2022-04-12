@@ -1,12 +1,29 @@
-// const myUser = {
-//   name: "kritik",
-//   phone: 8989612282,
-// };
+const person = {
+    name: "kritik", 
+    age : 22
+}
 
-const my = ['kritik', 'jain'];
+// console.log(person);
 
-// const { name, phone } = myUser;
+function Person(first, last, age, eye) {
+  this.firstName = first;
+  this.lastName = last;
+  this.age = age;
+  this.eyeColor = eye;
+}
 
-const [name, phone] = my;
-console.log(name);
-console.log(phone);
+
+
+// const brad = new Person('kritik', 'jain', 22, "brown");
+// console.log(brad);
+// console.log(person);
+
+
+let arr = [1, 2, 3, 4, 5];
+
+let ara = arr.filter((element) => {
+    return element % 2 !== 0;
+})
+
+console.log(ara);
+

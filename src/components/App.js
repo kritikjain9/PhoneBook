@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
+// import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./Header";
 import ContactList from "./ContactList";
 import AddContacts from "./AddContacts";
@@ -11,15 +13,15 @@ function App() {
 
   const addContactHandler = (contactDetails) => {
     // console.log(contactDetails);
-  
+
     setContacts([...contacts, { id: shortid.generate(), ...contactDetails }]);
   };
 
   const removeContact = (id) => {
     // console.log(id)
-    
+
     const newPhoneBook = contacts.filter((item) => {
-      console.log(item)
+      console.log(item);
       // console.log(`Getting this instead of ${id} id`);
       // console.log(id);
       // console.log(item.id);
@@ -49,9 +51,25 @@ function App() {
 
   return (
     <div>
-      <Header />
-      <AddContacts addContactHandler={addContactHandler} />
-      <ContactList  contacts={contacts} removeContact={removeContact} />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<AddContacts />}>
+            {/* <Route index element={<Home />} />  */}
+            {/* <Route path="blogs" element={<Blogs />} /> */}
+            <Route path="/list" element={<ContactList />} />
+            {/* <Route path="*" element={<NoPage />} /> */}
+          </Route>
+        </Routes>
+      </BrowserRouter>
+
+      {/* This is the video code */}
+      {/* <Router>
+        <Header />
+        <Route path="/add" component={AddContacts} />
+        </Router>
+        <AddContacts addContactHandler={addContactHandler} />
+        <ContactList contacts={contacts} removeContact={removeContact} /> 
+        */}
     </div>
   );
 }
