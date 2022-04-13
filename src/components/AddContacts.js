@@ -1,25 +1,28 @@
 import { toHaveDisplayValue } from "@testing-library/jest-dom/dist/matchers";
 import React, { Component } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 class AddContacts extends React.Component {
+
+  // navigate = useNavigate();
+
   state = {
     name: "",
     phone: "",
   };
-  
-  clickHandlier = () => {
-
-  }
 
   add = (event) => {
     event.preventDefault();
     this.props.addContactHandler(this.state);
 
     this.setState({
-      name: '',
-      phone: ''
-    })
-  }
+      name: "",
+      phone: "",
+    });
+
+    console.log(this.props);
+    // console.log(props);
+  };
 
   render() {
     return (
@@ -47,7 +50,7 @@ class AddContacts extends React.Component {
             <input
               type="number"
               name="phone"
-              className="text"
+              className="number"
               placeholder="Contact Number"
               required
               value={this.state.phone}
@@ -58,7 +61,9 @@ class AddContacts extends React.Component {
               }}
             />
           </div>
-          <button className="ui button green">Add Contact</button>
+          {/* <Link to="/"> */}
+            <button className="ui button green">Add Contact</button>
+          {/* </Link> */}
         </form>
       </div>
     );
